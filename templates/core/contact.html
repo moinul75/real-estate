@@ -1,0 +1,143 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% load static %}
+
+
+{% block content %}
+
+{% include 'core/partials/_showcase_section.html' %}
+
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'index' %}">
+            <i class="fas fa-home"></i>{{ _("Home") }} </a>
+        </li>
+        <li class="breadcrumb-item active">{{ _("About") }}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section id="about" class="py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <h2 class="pb-1">{{ _("We Search For The Perfect Home") }}</h2>
+        <img src="{% static 'img/showcase.jpg' %}" alt="">
+        <p class="mt-4">{{ canonical }}
+
+          
+
+          
+
+            <div class="container mt-5 bg-custom p-4 rounded">
+                <h1 class="text-center mb-4">Contact Us</h1>
+            
+                <form>
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" rows="4" placeholder="Type your message here" required></textarea>
+                    </div>
+            
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+      </div>
+      <div class="col-md-3">
+        <div>
+          <h3 class="pb-2">{{ _("Management") }}</h3>
+          <img class="square-pic pb-3" src="{% static '' %}" alt="CEO">
+          <h5 class="text-secondary pb-1">Zoynal Abdin Joy</h5>
+          <p>
+            +19178706381
+            <br>
+            banglavillage@gmail.com
+          </p>
+        </div>
+
+        <hr>
+
+        <div>
+          <style>
+            #exclusivityBadgeContainer {
+              background:  url(../img/poster.jpg);
+              background-size: 100%;
+              width: 200px;
+              height: 200px;
+              position: relative;
+            }
+          </style>
+
+          <h3>{{ _("Banner") }}</h3>
+          <a href="#" target="_blank">
+            <img src="{% static 'img/poster.jpg' %}" alt="">
+            <div 
+            
+            id="exclusivityBadgeContainer" title=" Buy.Sell.Rent in one platform">
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Work -->
+<section id="work" class="bg-dark text-white text-center">
+  <h2 class="display-4 pb-3">{{ _("We Work For You") }}</h2>
+
+  <a href="{% url 'listings' %}" class="btn btn-secondary text-white btn-lg">{{ _("View Our Featured Listings") }}</a>
+</section>
+
+
+{% if realtors %}
+<!-- Team -->
+<section id="team" class="py-5">
+  <div class="container">
+    <h2 class="text-center pb-5">{{ _("Meet the Team Behind Your Real Estate Success") }}</h2>
+    <div class="row text-center">
+
+      {% for realtor in realtors %}
+
+
+      <div class="{% if realtors.count > 2 %} col-md-4 {% else %} col-md-6 {% endif %}">
+        <img src="{{ realtor.photo.url }}" alt="{{ realtor.name }}" class="rounded-circle-5 mb-3">
+        <h4>{{ realtor.name }}</h4>
+        <p class="text-success">
+          <i class="fas fa-award text-success mb-3"></i> {{ _("Realtor") }}</p>
+        <hr>
+        <p>
+          <i class="fas fa-phone"></i> {{ realtor.phone }}</p>
+        <p>
+          <i class="fas fa-envelope-open"></i> {{ realtor.email }}</p>
+      </div>
+
+      {% endfor %}
+
+
+
+    </div>
+
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

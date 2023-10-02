@@ -1,0 +1,112 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% load static %}
+
+
+{% block content %}
+
+{% include 'core/partials/_showcase_section.html' %}
+
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'index' %}">
+            <i class="fas fa-home"></i>{{ _("Home") }} </a>
+        </li>
+        <li class="breadcrumb-item active">{{ _("About") }}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section id="about" class="py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <h2 class="pb-1">{{ _("We Search For The Perfect Home") }}</h2>
+        <img src="{% static 'img/about.jpg' %}" alt="">
+        <p class="mt-4">{{ canonical }}
+
+          <div class="container mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Connecting Dreams with Homes</h5>
+                    <p class="card-text">
+                      We began our journey with a simple yet profound vision: to bridge the gap between dreams and homes. Over the years, our dedicated team has worked tirelessly to turn this vision into a reality.                    </p>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Your Real Estate Journey Starts Here</h5>
+                  <p class="card-text">
+                    We are a passionate team of real estate professionals dedicated to guiding you through every step of your property journey. With years of industry experience, we understand the nuances of the market and pride ourselves on our unwavering commitment to client satisfaction.                  </p>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Meet the Team Behind Your Real Estate Success</h5>
+                <p class="card-text">
+                  Behind every successful real estate transaction is a team of dedicated professionals working tirelessly to make it happen. Our team is composed of experts who bring diverse skills, experiences, and perspectives to the table.                 </p>
+            </div>
+
+            <div class="card-body">
+              <h5 class="card-title">Committed to Excellence: Our Journey in Real Estate</h5>
+              <p class="card-text">
+                Our commitment to integrity, transparency, and exceptional service sets us apart. We're not just in the business of buying and selling properties; we're in the business of building trust, relationships, and dreams. Let our journey be a part of yours, as we strive for excellence in every transaction.          </div>
+            </div>
+          </div>
+
+      </div>
+ 
+
+        <hr>
+
+       
+    </div>
+  </div>
+</section>
+
+<!-- Work -->
+<section id="work" class="bg-dark text-white text-center">
+  <h2 class="display-4 pb-3">{{ _("We Work For You") }}</h2>
+
+  <a href="{% url 'listings' %}" class="btn btn-secondary text-white btn-lg">{{ _("View Properties") }}</a>
+</section>
+
+
+
+
+{% if realtors %}
+<!-- Team -->
+<section id="team" class="py-5">
+  <div class="container">
+    <h2 class="text-center pb-5">{{ _("Meet the Team Behind Your Real Estate Success") }}</h2>
+    <div class="row text-center">
+
+      {% for realtor in realtors %}
+
+
+      <div class="{% if realtors.count > 2 %} col-md-4 {% else %} col-md-6 {% endif %}">
+        <img src="{{ realtor.photo.url }}" alt="{{ realtor.name }}" class="rounded-circle-5 mb-3">
+        <h4>{{ realtor.name }}</h4>
+        <p class="text-success">
+          <i class="fas fa-award text-success mb-3"></i> {{ _("Realtor") }}</p>
+        <hr>
+        <p>
+          <i class="fas fa-phone"></i> {{ realtor.phone }}</p>
+        <p>
+          <i class="fas fa-envelope-open"></i> {{ realtor.email }}</p>
+      </div>
+
+      {% endfor %}
+
+
+
+    </div>
+
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}
